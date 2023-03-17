@@ -25,15 +25,15 @@ namespace logger {
         INFO
     };
 
-    class CustomLogger {  /// переименовать
+    class Logger {  /// переименовать
     private:
         static std::ofstream outStream;
         static Level level;
 
 
-        CustomLogger();
+        Logger() = default;
 
-        ~CustomLogger() { outStream.close(); };
+        ~Logger() { outStream.close(); };
 
         static std::string generateMessage(const std::string &logMessage, const std::string &type) {
             std::time_t timeNow = std::time(nullptr);
@@ -72,7 +72,7 @@ namespace logger {
         }
 
 
-        static void writeLog(const std::string &logMessage) {
+        /*static void writeLog(const std::string &logMessage) {
             switch (level) {
                 case Level::RELEASE:
                     outStream << generateMessage(logMessage, "RELEASE DEBUGGING");
@@ -81,27 +81,27 @@ namespace logger {
                     std::cout << generateMessage(logMessage, "DEBUG");
             }
             outStream.flush();
-        }
+        }*/
     };
 
 
-    class Logger {
+    class CLog {
     private:
         std::stringstream outString;
         logger::Type typeOfLogger;
 
 
         template<typename T>
-        Logger &operator<<(T &t) {
+        CLog &operator<<(T &t) {
             outString << t;
             return *this;
         }
 
 
     public:
-        explicit Logger(Type logType) : typeOfLogger(logType) {}
+        explicit CLog(Type logType) : typeOfLogger(logType) {}
 
-        ~Logger() {
+        ~CLog() {
             std::time_t timeNow = std::time(nullptr);
             switch (typeOfLogger) {
                 case Type::DEBUG:
@@ -114,19 +114,19 @@ namespace logger {
         }
 
 
-        logger::Logger info()
+        logger::CLog info()
         {
-            return logger::Logger(logger::Type::INFO);
+            return logger::CLog(logger::Type::INFO);
         }
 
-        logger::Logger debug()
+        logger::CLog debug()
         {
-            return logger::Logger(logger::Type::DEBUG);
+            return logger::CLog(logger::Type::DEBUG);
         }
 
-        logger::Logger error()
+        logger::CLog error()
         {
-            return logger::Logger(logger::Type::ERROR);
+            return logger::CLog(logger::Type::ERROR);
         }
     };
 

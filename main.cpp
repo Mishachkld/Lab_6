@@ -1,17 +1,15 @@
 #include <iostream>
-#include "CustomLogger/CustomLogger.hpp"
+#include "CustomLogger/Logger.hpp"
 
 int main() {
-    std::string PATH = "D:\\Development\\C++Project\\Second semester\\Lab_6\\log.txt";  /// log.txt
-    logger::CustomLogger::includeFile(PATH);
-    logger::CustomLogger::info("info now My program work");
-    logger::CustomLogger::error("OutOfBoundException");
+    std::string PATH = "log.txt";  /// log.txt
+    logger::Logger::includeFile(PATH);
+    logger::Logger::info("info now My program work");
+    logger::Logger::error("OutOfBoundException");
 
-    logger::CustomLogger::d("debug start smth");
+    logger::Logger::d("debug start smth");
 
 
-//    logger::Logger logger(logger::Type::DEBUG);
-//    logge
 
 
 
