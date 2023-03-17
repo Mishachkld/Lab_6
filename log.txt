@@ -1,0 +1,3 @@
+INFO: info now My program work | Fri Mar 17 20:56:20 2023
+ERROR: OutOfBoundException | Fri Mar 17 20:56:20 2023
+DEBUG: debug start smth | Fri Mar 17 20:56:20 2023
